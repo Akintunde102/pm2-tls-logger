@@ -4,7 +4,7 @@
 	"author": "ImSkully",
 	"license": "LGPL-3.0-or-later",
 	"description": "A simple and efficient PM2 module that forwards logs to Typesense Server",
-	"main": "index.js",
+	"main": "dist/index.js",
 	"dependencies": {
 		"@pm2/io": "^6.0.0",
 		"pm2": "^5.4.1",
