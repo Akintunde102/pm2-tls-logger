@@ -17,16 +17,14 @@
 	"config": {
 		"host": "",
 		"port": "",
-		"hostname": "",
-		"process-as-systems": false,
-		"blacklist": ""
+		"hostname": ""
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/ImSkully/pm2-papertrail-logger.git"
+		"url": "https://github.com/Akintunde102/pm2-tls-logger.git"
 	},
 	"bugs": {
-		"url": "https://github.com/ImSkully/pm2-papertrail-logger/issues"
+		"url": "https://github.com/Akintunde102/pm2-tls-logger/issues"
 	},
 	"keywords": [
 		"pm2",
