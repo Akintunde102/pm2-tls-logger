@@ -1,7 +1,7 @@
 import io from "@pm2/io";
 import pm2 from "pm2";
-import { Logger } from "./logger";
-import { handleInitError, getHostName, handleModuleConfig } from "./lib";
+import { Logger } from "./src/logger";
+import { handleInitError, getHostName, handleModuleConfig } from "./src/lib";
 
 
 const METRICS = io.metric({
