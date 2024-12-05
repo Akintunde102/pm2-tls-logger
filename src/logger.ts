@@ -32,7 +32,6 @@ export class Logger {
 
 	log(level: string, message: string): void {
 		try {
-			console.log({ level, message });
 			if (!SYSTEM_TRANSPORT || !LOGGER) {
 				console.error(`Discarding log from '${this.process}' astransport is not ready.`);
 				return;
