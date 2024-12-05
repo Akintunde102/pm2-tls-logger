@@ -1,4 +1,4 @@
-import * as io from "@pm2/io";
+import io from "@pm2/io";
 import * as pm2 from "pm2";
 import Logger from "./logger";
 import { handleInitError, getHostName, handleModuleConfig } from "./lib";
