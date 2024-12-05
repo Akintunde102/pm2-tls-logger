@@ -39,6 +39,16 @@ export class Logger {
 			// SYSTEM_TRANSPORT.localhost = this.name;
 			// SYSTEM_TRANSPORT.appName = this.appName;
 
+			console.log({ message }, {
+				process: {
+					host: process.env.host,
+					port: process.env.port ? parseInt(process.env.port, 10) : undefined,
+					// localhost: process.env.hostname || os.hostname(),
+					// app_name: process.env.module_name || "pm2-pp-logger",
+					ssl: false,
+				}
+			})
+
 			LOGGER.log(level, message);
 		} catch (error) {
 			console.error(`[ERROR] Failed to log message to remote server for process '${this.process}' with level ${level}:`);
