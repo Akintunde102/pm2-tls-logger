@@ -1,4 +1,3 @@
-import "winston-syslog";
 export declare class Logger {
     private name;
     private appName;

@@ -5,7 +5,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Logger = void 0;
 const winston_1 = __importDefault(require("winston"));
-require("winston-syslog");
 const SYSTEM_TRANSPORT = new winston_1.default.transports.Http({
     host: process.env.host,
     port: process.env.port ? parseInt(process.env.port, 10) : undefined,
@@ -15,7 +14,6 @@ const SYSTEM_TRANSPORT = new winston_1.default.transports.Http({
 });
 const LOGGER = winston_1.default.createLogger({
     format: winston_1.default.format.printf(({ message }) => message),
-    levels: winston_1.default.config.syslog.levels,
     transports: [SYSTEM_TRANSPORT],
 });
 class Logger {
@@ -32,7 +30,6 @@ class Logger {
             }
             // SYSTEM_TRANSPORT.localhost = this.name;
             // SYSTEM_TRANSPORT.appName = this.appName;
-
             LOGGER.log(level, message);
         }
         catch (error) {
