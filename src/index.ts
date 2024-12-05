@@ -1,6 +1,6 @@
 import io from "@pm2/io";
 import pm2 from "pm2";
-import Logger from "./logger";
+import { Logger } from "./logger";
 import { handleInitError, getHostName, handleModuleConfig } from "./lib";
 
 

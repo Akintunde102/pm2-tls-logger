@@ -17,7 +17,7 @@ const LOGGER = winston.createLogger({
 	transports: [SYSTEM_TRANSPORT],
 });
 
-class Logger {
+export class Logger {
 	private name: string;
 	private appName: string;
 	private process: string;
@@ -47,5 +47,3 @@ class Logger {
 		}
 	}
 }
-
-export default Logger;
