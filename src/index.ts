@@ -23,7 +23,6 @@ function routeLog(packet: any, level: string = "info"): void {
         const appName = processName;
 
         TRANSPORTS[processName] = new Logger(systemName, appName);
-        console.log({ a: METRICS })
         METRICS.set(Object.keys(TRANSPORTS).length);
 
         console.log(`Created new logger for process: ${processName}`);
