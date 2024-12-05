@@ -14,6 +14,10 @@ const LOGGER = winston.createLogger({
 	transports: [SYSTEM_TRANSPORT],
 });
 
+SYSTEM_TRANSPORT.on('error', (err) => {
+	console.error("[ERROR] Transport failed:", err);
+});
+
 export class Logger {
 	private name: string;
 	private appName: string;
