@@ -16,6 +16,9 @@ const LOGGER = winston_1.default.createLogger({
     format: winston_1.default.format.printf(({ message }) => message),
     transports: [SYSTEM_TRANSPORT],
 });
+SYSTEM_TRANSPORT.on('error', (err) => {
+    console.error("[ERROR] Transport failed:", err);
+});
 class Logger {
     constructor(systemName, programName) {
         this.name = systemName;
