@@ -32,6 +32,7 @@ class Logger {
             }
             // SYSTEM_TRANSPORT.localhost = this.name;
             // SYSTEM_TRANSPORT.appName = this.appName;
+
             LOGGER.log(level, message);
         }
         catch (error) {
