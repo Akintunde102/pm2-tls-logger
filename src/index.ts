@@ -1,11 +1,13 @@
 import io from "@pm2/io";
-import * as pm2 from "pm2";
+import pm2 from "pm2";
 import Logger from "./logger";
 import { handleInitError, getHostName, handleModuleConfig } from "./lib";
 
-const METRICS = {
-    processes: io.metric({ name: "Attached Processes", value: () => 0 })
-};
+
+const METRICS = io.metric({
+    name: "Attached Processes"
+});
+
 
 const TRANSPORTS: Record<string, Logger> = {};
 let PM2_CONFIG: Record<string, any> = {};
@@ -21,7 +23,8 @@ function routeLog(packet: any, level: string = "info"): void {
         const appName = processName;
 
         TRANSPORTS[processName] = new Logger(systemName, appName);
-        METRICS.processes.set(Object.keys(TRANSPORTS).length);
+        console.log({ a: METRICS })
+        METRICS.set(Object.keys(TRANSPORTS).length);
 
         console.log(`Created new logger for process: ${processName}`);
     }
@@ -58,7 +61,7 @@ io.init().initModule(false, (error: Error | null) => {
             bus.on("process:event", (packet: any) => {
                 if (packet.event === "exit" && TRANSPORTS[packet.process.name]) {
                     delete TRANSPORTS[packet.process.name];
-                    METRICS.processes.set(Object.keys(TRANSPORTS).length);
+                    METRICS.set(Object.keys(TRANSPORTS).length);
                     console.log(`Closed transport pipeline for exiting process '${packet.process.name}'.`);
                 }
             });
