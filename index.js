@@ -14,8 +14,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const io_1 = __importDefault(require("@pm2/io"));
 const pm2_1 = __importDefault(require("pm2"));
-const logger_1 = require("./src/logger");
-const lib_1 = require("./src/lib");
+const logger_1 = require("./logger");
+const lib_1 = require("./lib");
 const METRICS = io_1.default.metric({
     name: "Attached Processes"
 });

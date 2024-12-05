@@ -1,6 +1,6 @@
 {
 	"name": "pm2-tls-logger",
-	"version": "2.0.37",
+	"version": "2.0.40",
 	"author": "akintunde102",
 	"license": "LGPL-3.0-or-later",
 	"description": "A simple and efficient PM2 module that forwards logs to Typesense Server",
@@ -12,7 +12,10 @@
 		"winston-syslog": "^2.7.0"
 	},
 	"scripts": {
-		"build": "npx tsc"
+		"build": "tsc",
+		"test": "jest",
+		"lint": "eslint src/**/*.ts",
+		"prepare": "npm run build"
 	},
 	"config": {
 		"host": "",
