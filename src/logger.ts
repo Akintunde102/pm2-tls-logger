@@ -4,25 +4,35 @@ import winston from "winston";
 const SYSTEM_TRANSPORT = new winston.transports.Http({
 	host: process.env.host,
 	port: process.env.port ? parseInt(process.env.port, 10) : undefined,
-	// localhost: process.env.hostname || os.hostname(),
-	// app_name: process.env.module_name || "pm2-pp-logger",
 	ssl: false,
-});
-
-const LOGGER = winston.createLogger({
-	format: winston.format.printf(({ message }) => message),
-	transports: [SYSTEM_TRANSPORT],
+	path: '/log',
 });
 
 SYSTEM_TRANSPORT.on('error', (err) => {
 	console.error("[ERROR] Transport failed:", err);
 });
 
+
+
+SYSTEM_TRANSPORT.on("finish", () => {
+	console.log("[FINISH] Transport finished.");
+});
+
+const LOGGER = winston.createLogger({
+	format: winston.format.combine(
+		winston.format.timestamp(),
+		winston.format.json(),
+		winston.format.printf(({ timestamp, message }) => `[${timestamp}] ${message}`)
+	),
+	level: "info",
+	transports: [SYSTEM_TRANSPORT],
+});
+
+
 export class Logger {
 	private name: string;
 	private appName: string;
 	private process: string;
-
 
 	constructor(systemName: string, programName: string) {
 		this.name = systemName;
@@ -30,18 +40,16 @@ export class Logger {
 		this.process = programName;
 	}
 
-
 	log(level: string, message: string): void {
 		try {
 			if (!SYSTEM_TRANSPORT || !LOGGER) {
-				console.error(`Discarding log from '${this.process}' astransport is not ready.`);
+				console.error(`Discarding log from '${this.process}' as transport is not ready.`);
 				return;
 			}
 
-			// SYSTEM_TRANSPORT.localhost = this.name;
-			// SYSTEM_TRANSPORT.appName = this.appName;
+			console.log({ message, level })
 
-			LOGGER.log(level, message);
+			LOGGER.info(level, `${this.name} - ${this.appName}: ${message}`);
 		} catch (error) {
 			console.error(`[ERROR] Failed to log message to remote server for process '${this.process}' with level ${level}:`);
 			console.error(error);
