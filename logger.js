@@ -34,7 +34,7 @@ class Logger {
                 console.error(`Discarding log from '${this.process}' as transport is not ready.`);
                 return;
             }
-            console.log({ message, level });
+            console.log({ message, level }, this.name, this.appName, this.process);
             LOGGER.info(level, `${this.name} - ${this.appName}: ${message}`);
         }
         catch (error) {
