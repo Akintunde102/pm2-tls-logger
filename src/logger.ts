@@ -49,7 +49,7 @@ export class Logger {
 
 			console.log({ message, level }, this.name, this.appName, this.process)
 
-			LOGGER.info(level, `${this.name} - ${this.appName}: ${message}`);
+			LOGGER.info(`${this.name} - ${this.appName}: ${message}`);
 		} catch (error) {
 			console.error(`[ERROR] Failed to log message to remote server for process '${this.process}' with level ${level}:`);
 			console.error(error);
