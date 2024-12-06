@@ -16,9 +16,13 @@ let PM2_CONFIG: Record<string, any> = {};
 function routeLog(packet: any, level: string = "info"): void {
     const processName = packet.process.name.trim();
 
+    if (processName === "pm2-tls-logger") {
+        return;
+    }
+
     if ((processName === PM2_CONFIG.module_name) && level === "error") return;
 
-    if (!TRANSPORTS[processName] && processName !== "pm2-tls-logger") {
+    if (!TRANSPORTS[processName]) {
         const systemName = PM2_CONFIG.hostname;
         const appName = processName;
 

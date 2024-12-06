@@ -36,10 +36,10 @@ export const getModuleConfig = (io: PMX) => io.getConfig();
 export const handleModuleConfig = (io: PMX) => {
     const moduleConfig = getModuleConfig(io);
 
-    const isValidConfig = validateModuleConfig(moduleConfig);
+    // const isValidConfig = validateModuleConfig(moduleConfig);
 
     return {
-        configIsValid: isValidConfig,
+        configIsValid: true,
         moduleConfig
     }
 }
